@@ -7,30 +7,19 @@ public class Player : Unit
 
     private void Update()
     {
-        //타겟이 없다면 움직이기
-        if (isTarget == false) Move();
-    }
-
-    public void Move()
-    {
-        transform.Translate(moveSpeed * Vector2.left * Time.deltaTime);
-    }
-
-    //플레이어 콜라이더 내 적이 있다면 데지미 주기.
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        //TODO:닿으면 바로 죽음. 왜냐하면 초당 24프레임이 찍히니까. 코루인 WaitForSeconds 써서 초당 데미지 추가하기
-        //범위 내 들어 오면 멈춰야 하니 isTarget = true
-        isTarget = true; // 멈추기
-        if (collision.CompareTag("Player"))
+        //적이 있다면 if문 실행
+        if (isTarget)
         {
-            collision.GetComponent<Player>().TakeDamage(damage);
+            //공격이 가능하다면 공격 거리 안에 있는 colls 모두 Attack().
+            if (CanAttack()) Attack();
         }
     }
-
-    //적한테 데미지 주는 코루틴 //아직 미완
-    public IEnumerator DamageCoroutine()
+    private void FixedUpdate()
     {
-        yield return new WaitForSeconds(attackInterval);
+        //타겟이 없다면 움직이기
+        if (isTarget == false) Move(Vector2.left);
+
+        //적을 감지하고 감지가 되면 isTarget = true
+        TargetScan(Vector2.left);
     }
 }
