@@ -977,11 +977,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0b5693c09ffa144972225f2b3f6a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitData: {fileID: 11400000, guid: b813fda29494c894abfef37b4f453aca, type: 2}
+  unitData: {fileID: 11400000, guid: a0ba3f8f27c97984f87895dd52491437, type: 2}
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
   characterScale: 8
+  spawnInterval: 10
+  startSpawnTime: 60
+  lastSpawnTime: 50.01631
 --- !u!58 &3084396198399721780
 CircleCollider2D:
   m_ObjectHideFlags: 0

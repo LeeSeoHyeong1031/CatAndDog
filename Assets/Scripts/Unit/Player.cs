@@ -5,64 +5,67 @@ using UnityEngine.Rendering;
 
 public class Player : Unit
 {
-    private Animator anim;
+	private Animator anim;
 
-    private void Awake()
-    {
-        Init(); //스텟 초기화
-        anim = GetComponent<Animator>();
-    }
-    private void Start()
-    {
-        ScaleCtrl();
-    }
-    private void Update()
-    {
-        if (dead) { return; }
-        //적이 있다면 if문 실행
-        if (isTarget)
-        {
-            //공격이 가능하다면 공격 거리 안에 있는 colls 모두 Attack().
-            if (CanAttack())
-            {
-                anim.SetTrigger("2_Attack");
-                Attack();
-            }
-        }
-    }
-    private void FixedUpdate()
-    {
-        if (dead) { return; }
+	private void Awake()
+	{
+		Init(); //스텟 초기화
+		anim = GetComponent<Animator>();
+	}
+	private void Start()
+	{
+		ScaleCtrl();
+	}
+	private void Update()
+	{
+		if (dead) { return; }
+		//적이 있다면 if문 실행
+		if (isTarget)
+		{
+			//공격이 가능하다면 if문 실행
+			if (CanAttack())
+			{
+				anim.SetTrigger("2_Attack");
 
-        //타겟이 없다면 움직이기
-        if (isTarget == false)
-        {
-            Move(Vector2.left);
-            anim.SetBool("1_Move", true);
-        }
-        else anim.SetBool("1_Move", false);
+				//단일 타겟이 true이면 단일 공격, 아니라면 광역 공격
+				if (isSingleTarget == true) SingleAttack();
+				else AreaAttack();
+			}
+		}
+	}
+	private void FixedUpdate()
+	{
+		if (dead) { return; }
 
-        //적을 감지하고 감지가 되면 isTarget = true
-        TargetScan(Vector2.left);
-    }
+		//타겟이 없다면 움직이기
+		if (isTarget == false)
+		{
+			Move(Vector2.left);
+			anim.SetBool("1_Move", true);
+		}
+		else anim.SetBool("1_Move", false);
 
-    public override void TakeDamage(int damage)
-    {
-        base.TakeDamage(damage);
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
+		//적을 감지하고 감지가 되면 isTarget = true
+		TargetScan(Vector2.left);
+	}
 
-    public override void Die()
-    {
-        base.Die();
-        //애니메이션 처리 부분
-        anim.SetTrigger("4_Death");
-        anim.SetBool("isDeath", true);
+	public override void TakeDamage(int damage)
+	{
+		base.TakeDamage(damage);
+		if (health <= 0)
+		{
+			Die();
+		}
+	}
 
-        GameManager.Instance.curPlayerUnits.Remove(this);
-        GetComponent<CircleCollider2D>().enabled = false;
-    }
+	public override void Die()
+	{
+		base.Die();
+		GetComponent<CircleCollider2D>().enabled = false;
+		GameManager.Instance.curPlayerUnits.Remove(this);
+		//애니메이션 처리 부분
+		anim.SetTrigger("4_Death");
+		anim.SetBool("isDeath", true);
+
+	}
 }
