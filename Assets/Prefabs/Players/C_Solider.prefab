@@ -1395,7 +1395,7 @@ GameObject:
   - component: {fileID: 4000597351716900015}
   - component: {fileID: 1591854195644666162}
   m_Layer: 7
-  m_Name: R_Solider
+  m_Name: C_Solider
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1503,6 +1503,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   characterScale: 8
+  cooltime: 1.5
 --- !u!50 &1591854195644666162
 Rigidbody2D:
   serializedVersion: 4

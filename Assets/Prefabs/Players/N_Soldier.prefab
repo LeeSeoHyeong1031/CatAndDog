@@ -3746,8 +3746,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   characterScale: 8.66
-  c_name: 
-  anim: {fileID: 8779465510152301781}
+  cooltime: 1.5
 --- !u!50 &5099172969113983284
 Rigidbody2D:
   serializedVersion: 4

@@ -559,6 +559,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   characterScale: 7.5
+  cooltime: 2
 --- !u!50 &8387049388681335863
 Rigidbody2D:
   serializedVersion: 4

@@ -12,6 +12,8 @@ public class GameManager : SingletonManager<GameManager>
     public PlayerBase playerBase;
     public EnemyBase enemyBase;
 
+    public PlayerBaseSpawner playerBaseSpawner;
+
     //코인관련 변수들
     public int curCoin = 0; //현재 코인
     public int[] maxCoinByLevel = { 100, 150, 200, 250, 300, 350, 400 }; //가질 수 있는 최대 코인
@@ -23,7 +25,7 @@ public class GameManager : SingletonManager<GameManager>
     private void Update()
     {
         UpdateCoin(); //1초마다 업데이트.
-        UpdateCostColor();
+        UpdateLevelUpCostColor();
     }
 
     //코인 업데이트 메서드.
@@ -41,11 +43,12 @@ public class GameManager : SingletonManager<GameManager>
     }
 
     //Cost 
-    public void UpdateCostColor()
+    public void UpdateLevelUpCostColor()
     {
         //레벨이 최대치 일 경우 return
         if (level == maxCoinByLevel.Length - 1) return;
-        UIManager.Instance.costText.color = curCoin < costByLevelUp[level] ? Color.red : Color.black;
+        bool res = curCoin >= costByLevelUp[level];
+        UIManager.Instance.UpdateLevelUpUI(ref res);
     }
 
     //레벨업이 가능한지.

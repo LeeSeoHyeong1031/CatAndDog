@@ -88,6 +88,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   characterScale: 9
+  cooltime: 2
 --- !u!58 &4052020224166781127
 CircleCollider2D:
   m_ObjectHideFlags: 0
