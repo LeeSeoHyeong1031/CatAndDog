@@ -7994,6 +7994,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049855572}
   m_CullTransparentMesh: 1
+--- !u!1 &1052069602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1052069603}
+  - component: {fileID: 1052069604}
+  m_Layer: 0
+  m_Name: UIElements
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1052069603
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052069602}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1052069604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052069602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2f394ea8e1f51459a9f97eda23599d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBaseHealthText: {fileID: 1748897437}
+  enemyBaseHealthText: {fileID: 960362563}
+  coinText: {fileID: 508408432}
+  levelText: {fileID: 911569179}
+  costText: {fileID: 1817565919}
+  UltimateBackground: {fileID: 1065670424}
+  costBackgroundObj: {fileID: 448235519}
+  levelUpBackgroundImage: {fileID: 470650922}
+  ultimateParticleObj: {fileID: 7477171639589051625}
+  victoryUI: {fileID: 7600410486418712564}
+  defeatUI: {fileID: 1296113899}
 --- !u!1 &1054308014
 GameObject:
   m_ObjectHideFlags: 0
@@ -9802,61 +9857,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 1}
---- !u!1 &1649725909
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1649725911}
-  - component: {fileID: 1649725910}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1649725910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649725909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67d64168340164f42b4959b6df4570bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerBaseHealthText: {fileID: 1748897437}
-  enemyBaseHealthText: {fileID: 960362563}
-  coinText: {fileID: 508408432}
-  levelText: {fileID: 911569179}
-  costText: {fileID: 1817565919}
-  UltimateBackground: {fileID: 1065670424}
-  costBackgroundObj: {fileID: 448235519}
-  levelUpBackgroundImage: {fileID: 470650922}
-  ultimateParticleObj: {fileID: 7477171639589051625}
-  victoryUI: {fileID: 7600410486418712564}
-  defeatUI: {fileID: 1296113899}
---- !u!4 &1649725911
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649725909}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 807.8847, y: 294.3321, z: -2.5998185}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1670269551
 GameObject:
   m_ObjectHideFlags: 0
@@ -9888,9 +9888,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curPlayerUnits: []
   curEnemyUnits: []
-  playerBase: {fileID: 1327238018}
-  enemyBase: {fileID: 1269251749}
-  playerBaseSpawner: {fileID: 1327238017}
+  playerBase: {fileID: 0}
+  enemyBase: {fileID: 0}
+  playerBaseSpawner: {fileID: 0}
   curCoin: 0
   maxCoinByLevel: 6400000096000000c8000000fa0000002c0100005e01000090010000
   costByLevelUp: 280000005000000078000000a0000000c8000000f0000000
@@ -10887,6 +10887,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1367111604743290155}
   m_CullTransparentMesh: 0
+--- !u!4 &169407199346849856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478520443325480968}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 807.8847, y: 294.3321, z: -2.5998185}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &202678271649443853
 RectTransform:
   m_ObjectHideFlags: 0
@@ -68355,6 +68370,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8478520443325480968
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 169407199346849856}
+  - component: {fileID: 8609519856938129774}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!224 &8526517703447285999
 RectTransform:
   m_ObjectHideFlags: 0
@@ -68437,6 +68469,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &8609519856938129774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478520443325480968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d64168340164f42b4959b6df4570bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elements: {fileID: 0}
+  playerBaseHealthText: {fileID: 0}
+  enemyBaseHealthText: {fileID: 0}
+  coinText: {fileID: 0}
+  levelText: {fileID: 0}
+  costText: {fileID: 0}
+  UltimateBackground: {fileID: 0}
+  costBackgroundObj: {fileID: 0}
+  levelUpBackgroundImage: {fileID: 0}
+  ultimateParticleObj: {fileID: 0}
+  victoryUI: {fileID: 0}
+  defeatUI: {fileID: 0}
 --- !u!1 &8617105918027895515
 GameObject:
   m_ObjectHideFlags: 0
@@ -69197,4 +69253,5 @@ SceneRoots:
   - {fileID: 1269251747}
   - {fileID: 1054849135}
   - {fileID: 1670269553}
-  - {fileID: 1649725911}
+  - {fileID: 169407199346849856}
+  - {fileID: 1052069603}

@@ -66,3 +66,6 @@ Title -> Game -> Title -> Game 가는 과정에서 DontDestroyOnLoad 땜에 Mana
 매니저 중 인스펙터를 이용해 참조한 오브젝트는 씬이 바뀔 때 없어져 버려 Missing 상태가 되어 버린다.
 
 결론: 싱글톤 공부하고 게으른 초기화 활용해서 해결해보기.
+
+ui Elements 만들어서 게임씬을 다시 로드해도 참조하도록 바꿨는데 OnClick에 직접 할당한 건 Missing나버림.
+예를 들어 게임 나가기 버튼이 그랬음. 이것도 스크립트에서 게임매니저한테 직접 this로 줘야 할듯.

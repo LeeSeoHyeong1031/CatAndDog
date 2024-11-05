@@ -6,19 +6,20 @@ using UnityEngine.UI;
 
 public class MySceneManager : SingletonManager<MySceneManager>
 {
-    public Button startButton;
-    public void GameStart()
-    {
-        SceneManager.LoadScene("GameScene");
-    }
+	public Button startButton;
+	public void GameStart()
+	{
+		Time.timeScale = 1f;
+		SceneManager.LoadScene("GameScene");
+	}
 
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
+	public void QuitGame()
+	{
+		Application.Quit();
+	}
 
-    public void LoadTitleScene()
-    {
-        SceneManager.LoadScene("TitleScene");
-    }
+	public void LoadTitleScene()
+	{
+		SceneManager.LoadScene("TitleScene");
+	}
 }
