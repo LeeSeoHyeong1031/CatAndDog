@@ -27,10 +27,6 @@ public class Player : Unit
             if (CanAttack())
             {
                 anim.SetTrigger("2_Attack");
-
-                //단일 타겟이 true이면 단일 공격, 아니라면 광역 공격
-                if (isSingleTarget == true) SingleAttack();
-                else AreaAttack();
             }
         }
     }

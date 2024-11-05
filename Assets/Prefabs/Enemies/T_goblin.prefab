@@ -3383,7 +3383,7 @@ Animator:
   m_GameObject: {fileID: 6607785513701473742}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9358c226bb09e24da9c5f7064768810, type: 2}
+  m_Controller: {fileID: 9100000, guid: dee00b12a4bf68e409ba677a4a08b806, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3413,7 +3413,7 @@ MonoBehaviour:
   characterScale: 9
   spawnInterval: 30
   startSpawnTime: 120
-  lastSpawnTime: 60.006905
+  lastSpawnTime: 120
 --- !u!58 &2469489785133939848
 CircleCollider2D:
   m_ObjectHideFlags: 0

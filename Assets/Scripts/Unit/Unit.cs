@@ -108,7 +108,11 @@ public class Unit : MonoBehaviour, ITakeDamage
                 }
             }
         }
-        unit.TakeDamage(damage); //foreach를 돌고 나온 체력이 가장 낮은 unit에게 TakeDamage()호출.
+        //체력 낮은애를 공격하려니 순간 죽어 있어서 nullReference가 나오는 경우가 있다.
+        if (unit != null)
+        {
+            unit.TakeDamage(damage);
+        } //foreach를 돌고 나온 체력이 가장 낮은 unit에게 TakeDamage()호출.
     }
 
     //이동 메서드
@@ -128,7 +132,6 @@ public class Unit : MonoBehaviour, ITakeDamage
         moveSpeed = unitData.moveSpeed;
         //cost = unitData.cost;
         c_name = unitData.c_name;
-        isSingleTarget = unitData.isSingleAttack;
         //컴포넌트 할당
         rb = GetComponent<Rigidbody2D>();
         //BoxCenter,BoxSize 초기화

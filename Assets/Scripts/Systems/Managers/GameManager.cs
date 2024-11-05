@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class GameManager : SingletonManager<GameManager>
 {
@@ -47,8 +46,7 @@ public class GameManager : SingletonManager<GameManager>
     {
         //레벨이 최대치 일 경우 return
         if (level == maxCoinByLevel.Length - 1) return;
-        bool res = curCoin >= costByLevelUp[level];
-        UIManager.Instance.UpdateLevelUpUI(ref res);
+        UIManager.Instance.costText.color = curCoin >= costByLevelUp[level] ? Color.black : Color.red;
     }
 
     //레벨업이 가능한지.
@@ -101,6 +99,27 @@ public class GameManager : SingletonManager<GameManager>
     public void Stop()
     {
         Time.timeScale = 0;
+    }
+
+    //타이틀 씬 불러오기
+    public void LoadTitleScene()
+    {
+        MySceneManager.Instance.LoadTitleScene();
+    }
+
+    //게임 매니저 관련 필드 초기화
+    public void localInit()
+    {
+        level = 0;
+        curPlayerUnits.Clear();
+        curEnemyUnits.Clear();
+        curCoin = 0;
+    }
+
+    //게임 시작 전 모든 초기화
+    public void AllInit()
+    {
+        localInit();
     }
 
     //GameManager에 있는 curPlayerUnits에 Add할 떄 리스트안에서 y좌표 별로 정렬해서 넣어놔야 함.

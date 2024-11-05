@@ -25,6 +25,10 @@ public class UIManager : SingletonManager<UIManager>
     //Transform
     public Transform ultimateParticleObj;
 
+    //승리, 패배 GameObject
+    public GameObject victoryUI;
+    public GameObject defeatUI;
+
     private void Start()
     {
         Init();
@@ -62,37 +66,6 @@ public class UIManager : SingletonManager<UIManager>
         costText.text = GameManager.Instance.costByLevelUp[GameManager.Instance.level].ToString();
     }
 
-    //Cost 
-    //고쳐야 함.
-    public void UpdateLevelUpUI(ref bool res)
-    {
-        //현재 소지한 코인량이 레벨업에 필요한 비용보다 작을 경우
-        if (res)
-        {
-            costText.color = Color.black;
-            StartCoroutine(LevelUpBgImageCoroutine(res));
-        }
-        else
-        {
-            costText.color = Color.red; //비용Text 빨간색
-            levelUpBackgroundImage.color = Color.gray;
-        }
-    }
-
-    public IEnumerator LevelUpBgImageCoroutine(bool res)
-    {
-        while (res)
-        {
-            Color color = Color.yellow;
-            color.a = 0.7f;
-            levelUpBackgroundImage.color = color;
-            yield return new WaitForSeconds(0.5f);
-            color.a = 1f;
-            levelUpBackgroundImage.color = color;
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
-
     //최대 레벨일 때 처리하기 위한 메서드
     public void MaxLevel()
     {
@@ -116,6 +89,16 @@ public class UIManager : SingletonManager<UIManager>
     {
         UltimateBackground.color = Color.gray;
         ultimateParticleObj.gameObject.SetActive(false);
+    }
+
+    public void Victory(bool value)
+    {
+        victoryUI.SetActive(value);
+    }
+
+    public void Defeat(bool value)
+    {
+        defeatUI.SetActive(value);
     }
 
     //UI 초기화

@@ -10,6 +10,7 @@ public class PlayerBaseSpawner : BaseSpawner
 
     private void Awake()
     {
+        GameManager.Instance.playerBaseSpawner = this;
         anim = GetComponent<Animator>();
     }
 
