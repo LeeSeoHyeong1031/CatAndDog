@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class LevelUpButton : MonoBehaviour
 {
+    private Button levelUpButton;
     private void Awake()
     {
-        UIManager.Instance.levelUpButton = GameObject.Find("LevelPanel").GetComponent<Button>();
-        UIManager.Instance.levelUpButton.onClick.AddListener(UIManager.Instance.levelUpButton.GetComponent<LevelUpButton>().OnClick);
+        levelUpButton = GetComponent<Button>();
+        levelUpButton.onClick.AddListener(OnClick);
     }
     public void OnClick()
     {

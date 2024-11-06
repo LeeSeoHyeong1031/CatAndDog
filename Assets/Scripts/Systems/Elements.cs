@@ -29,11 +29,6 @@ public class Elements : MonoBehaviour
     public GameObject defeatUI;
     public GameObject endPanel;
 
-    public Button quitButton;
-
-    public Button levelUpButton;
-    public Button ultimateButton;
-
     private void Awake()
     {
         UIManager.Instance.elements = this;
