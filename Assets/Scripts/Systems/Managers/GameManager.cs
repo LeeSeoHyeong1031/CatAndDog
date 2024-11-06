@@ -20,7 +20,12 @@ public class GameManager : SingletonManager<GameManager>
     private float lastCoinRaiseTime = 0; //마지막 코인이 오른 시간
     public int[] costByLevelUp = { 40, 80, 120, 160, 200, 240 }; //레벨업 별 비용.
     public int level = 0;
+    private float displayCoin = 0f;
 
+    private void Start()
+    {
+        StartCoroutine(DisplayRaiseCoin());
+    }
     private void Update()
     {
         if (Input.GetKey(KeyCode.Q)) DoubleSpeedTime();
@@ -39,7 +44,28 @@ public class GameManager : SingletonManager<GameManager>
             curCoin += coinRaiseByLevel[level]; //레벨에따른 코인량 증가.
             curCoin = Mathf.Clamp(curCoin, 0, maxCoinByLevel[level]); //curCoin을 계속 더해주는데 현재 레벨에서 가질 수 있는 최대코인을 넘어서면
                                                                       //알아서 컷.
-            UIManager.Instance.UpdateCoinText(ref curCoin, ref maxCoinByLevel[level]); //코인Text UI업데이트
+                                                                      //UIManager.Instance.UpdateCoinText(ref curCoin, ref maxCoinByLevel[level]); //코인Text UI업데이트
+        }
+    }
+
+    public IEnumerator DisplayRaiseCoin()
+    {
+        while (true)
+        {
+            float startTime = Time.time;
+            float endTime = Time.time + 1f;
+            float startCoin = displayCoin;
+            float endCoin = curCoin;
+
+            while (Time.time < endTime)
+            {
+                // Lerp의 세 번째 인자를 0에서 1까지 부드럽게 증가시킴
+                displayCoin = Mathf.Lerp(startCoin, endCoin, (Time.time - startTime) / (endTime - startTime));
+                UIManager.Instance.coinText.text = displayCoin.ToString("n0");
+                yield return null;
+            }
+
+            displayCoin = endCoin; // 1초 후 정확히 curCoin 값으로 설정
         }
     }
 
