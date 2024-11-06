@@ -72,7 +72,7 @@ public class UIManager : SingletonManager<UIManager>
     }
 
     //ÄÚÀÎ º¸À¯·® Text ¾÷µ«
-    public void UpdateCoinText(ref int curCoin, ref int maxCoin)
+    public void UpdateCoinText(string curCoin, ref int maxCoin)
     {
         coinText.text = $"{curCoin} / {maxCoin}";
     }
@@ -151,6 +151,7 @@ public class UIManager : SingletonManager<UIManager>
     //±Ã±Ø±â ºñÈ°¼ºÈ­
     public void UltimateDeActive()
     {
+        if (ultimateParticleObj == null) return;
         canUseUlti = false;
         UltimateBackground.color = Color.gray;
         ultimateParticleObj.gameObject.SetActive(false);

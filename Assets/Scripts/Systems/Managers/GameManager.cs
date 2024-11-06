@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonManager<GameManager>
 {
@@ -24,6 +25,7 @@ public class GameManager : SingletonManager<GameManager>
 
     private void Start()
     {
+        SceneManager.sceneLoaded += (x, y) => Init();
         StartCoroutine(DisplayRaiseCoin());
     }
     private void Update()
@@ -61,7 +63,7 @@ public class GameManager : SingletonManager<GameManager>
             {
                 // Lerp의 세 번째 인자를 0에서 1까지 부드럽게 증가시킴
                 displayCoin = Mathf.Lerp(startCoin, endCoin, (Time.time - startTime) / (endTime - startTime));
-                UIManager.Instance.coinText.text = displayCoin.ToString("n0");
+                UIManager.Instance.UpdateCoinText(displayCoin.ToString("n0"), ref maxCoinByLevel[level]);
                 yield return null;
             }
 
@@ -147,6 +149,7 @@ public class GameManager : SingletonManager<GameManager>
     {
         level = 0;
         curCoin = 0;
+        displayCoin = 0;
         curPlayerUnits.Clear();
         curEnemyUnits.Clear();
     }
