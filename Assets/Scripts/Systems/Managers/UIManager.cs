@@ -6,122 +6,131 @@ using UnityEngine.UI;
 
 public class UIManager : SingletonManager<UIManager>
 {
-	[SerializeField] internal Elements elements;
-	//text
-	public TextMeshProUGUI playerBaseHealthText; //플레이어 기지 체력 Text
-	public TextMeshProUGUI enemyBaseHealthText; //적 기지 체력 Text
-	public TextMeshProUGUI coinText; //코인 Text
-	public TextMeshProUGUI levelText; //현재 레벨 Text
-	public TextMeshProUGUI costText; //레벨업에 필요한 비용 Text
+    [SerializeField] internal Elements elements;
+    //text
+    public TextMeshProUGUI playerBaseHealthText; //플레이어 기지 체력 Text
+    public TextMeshProUGUI enemyBaseHealthText; //적 기지 체력 Text
+    public TextMeshProUGUI coinText; //코인 Text
+    public TextMeshProUGUI levelText; //현재 레벨 Text
+    public TextMeshProUGUI costText; //레벨업에 필요한 비용 Text
 
-	//image
-	public Image UltimateBackground; //궁극기 배경 이미지
+    //image
+    public Image UltimateBackground; //궁극기 배경 이미지
 
-	//MaxLevel() 메서드에서 사용할 변수들
-	public GameObject costBackgroundObj;
-	public Image levelUpBackgroundImage;
+    //MaxLevel() 메서드에서 사용할 변수들
+    public GameObject costBackgroundObj;
+    public Image levelUpBackgroundImage;
 
-	//Transform
-	public Transform ultimateParticleObj;
+    //Transform
+    public Transform ultimateParticleObj;
 
-	//승리, 패배 GameObject
-	public GameObject victoryUI;
-	public GameObject defeatUI;
+    //승리, 패배 GameObject
+    public GameObject victoryUI;
+    public GameObject defeatUI;
+    public GameObject endPanel;
 
-	private void Start()
-	{
-		Init();
-	}
-	public void FindUIElements()
-	{
-		// UI 요소들 찾기
-		playerBaseHealthText = elements.playerBaseHealthText;
-		enemyBaseHealthText = elements.enemyBaseHealthText;
-		coinText = elements.coinText;
-		levelText = elements.levelText;
-		costText = elements.costText;
-		UltimateBackground = elements.UltimateBackground;
-		costBackgroundObj = elements.costBackgroundObj;
-		levelUpBackgroundImage = elements.levelUpBackgroundImage;
-		ultimateParticleObj = elements.ultimateParticleObj;
-		victoryUI = elements.victoryUI;
-		defeatUI = elements.defeatUI;
-	}
+    public Button quitButton;
+    public Button levelUpButton;
+    public Button ultimateButton;
+
+    public void FindUIElements()
+    {
+        // UI 요소들 찾기
+        playerBaseHealthText = elements.playerBaseHealthText;
+        enemyBaseHealthText = elements.enemyBaseHealthText;
+        coinText = elements.coinText;
+        levelText = elements.levelText;
+        costText = elements.costText;
+        UltimateBackground = elements.UltimateBackground;
+        costBackgroundObj = elements.costBackgroundObj;
+        levelUpBackgroundImage = elements.levelUpBackgroundImage;
+        ultimateParticleObj = elements.ultimateParticleObj;
+        victoryUI = elements.victoryUI;
+        defeatUI = elements.defeatUI;
+        endPanel = elements.endPanel;
+        quitButton = elements.quitButton;
+        levelUpButton = elements.levelUpButton;
+        ultimateButton = elements.ultimateButton;
+    }
 
 
-	//플레이어 기지 체력 Text 업뎃
-	public void UpdatePlayerBaseHeathText()
-	{
-		PlayerBase pb = GameManager.Instance.playerBase;
-		playerBaseHealthText.text = $"{pb.health}/{pb.maxHealth}";
-	}
+    //플레이어 기지 체력 Text 업뎃
+    public void UpdatePlayerBaseHeathText()
+    {
+        PlayerBase pb = GameManager.Instance.playerBase;
+        playerBaseHealthText.text = $"{pb.health}/{pb.maxHealth}";
+    }
 
-	//적 기지 체력 Text 업뎃
-	public void UpdateEnemyBaseHeathText()
-	{
-		EnemyBase eb = GameManager.Instance.enemyBase;
-		enemyBaseHealthText.text = $"{eb.health}/{eb.maxHealth}";
-	}
+    //적 기지 체력 Text 업뎃
+    public void UpdateEnemyBaseHeathText()
+    {
+        EnemyBase eb = GameManager.Instance.enemyBase;
+        enemyBaseHealthText.text = $"{eb.health}/{eb.maxHealth}";
+    }
 
-	//코인 보유량 Text 업뎃
-	public void UpdateCoinText(ref int curCoin, ref int maxCoin)
-	{
-		coinText.text = $"{curCoin} / {maxCoin}";
-	}
+    //코인 보유량 Text 업뎃
+    public void UpdateCoinText(ref int curCoin, ref int maxCoin)
+    {
+        coinText.text = $"{curCoin} / {maxCoin}";
+    }
 
-	//레벨 Text 업뎃
-	public void UpdateLevelText()
-	{
-		levelText.text = $"LV {GameManager.Instance.level + 1}";
-	}
+    //레벨 Text 업뎃
+    public void UpdateLevelText()
+    {
+        levelText.text = $"LV {GameManager.Instance.level + 1}";
+    }
 
-	//레벨업 비용 Text 업뎃
-	public void UpdateCostText()
-	{
-		costText.text = GameManager.Instance.costByLevelUp[GameManager.Instance.level].ToString();
-	}
+    //레벨업 비용 Text 업뎃
+    public void UpdateCostText()
+    {
+        costText.text = GameManager.Instance.costByLevelUp[GameManager.Instance.level].ToString();
+    }
 
-	//최대 레벨일 때 처리하기 위한 메서드
-	public void MaxLevel()
-	{
-		costBackgroundObj.SetActive(false);
-		levelUpBackgroundImage.color = Color.gray;
-		levelText.text = "Lv MAX";
-	}
+    //최대 레벨일 때 처리하기 위한 메서드
+    public void MaxLevel()
+    {
+        costBackgroundObj.SetActive(false);
+        levelUpBackgroundImage.color = Color.gray;
+        levelText.text = "Lv MAX";
+    }
 
-	//궁극기 활성화
-	public void UltimateActive(ref float lastUltimateUse)
-	{
-		if (Time.time >= lastUltimateUse)
-		{
-			UltimateBackground.color = Color.white;
-			ultimateParticleObj.gameObject.SetActive(true);
-		}
-	}
+    //궁극기 활성화
+    public void UltimateActive(ref float lastUltimateUse)
+    {
+        if (Time.time >= lastUltimateUse)
+        {
+            UltimateBackground.color = Color.white;
+            ultimateParticleObj.gameObject.SetActive(true);
+        }
+    }
 
-	//궁극기 비활성화
-	public void UltimateDeActive()
-	{
-		UltimateBackground.color = Color.gray;
-		ultimateParticleObj.gameObject.SetActive(false);
-	}
+    //궁극기 비활성화
+    public void UltimateDeActive()
+    {
+        UltimateBackground.color = Color.gray;
+        ultimateParticleObj.gameObject.SetActive(false);
+    }
 
-	public void Victory(bool value)
-	{
-		victoryUI.SetActive(value);
-	}
+    public void Victory(bool value)
+    {
+        endPanel.SetActive(value);
+        victoryUI.SetActive(value);
+    }
 
-	public void Defeat(bool value)
-	{
-		defeatUI.SetActive(value);
-	}
+    public void Defeat(bool value)
+    {
+        endPanel.SetActive(value);
+        defeatUI.SetActive(value);
+    }
 
-	//UI 초기화
-	public void Init()
-	{
-		UpdatePlayerBaseHeathText(); //플레이어 기지 체력 Text
-		UpdateEnemyBaseHeathText();  //적 기지 체력 Text
-		UpdateLevelText(); //플레이어 레벨 Text
-		UpdateCostText(); //플레이어 레벨업 비용 Text
-	}
+    //UI 초기화
+    public void Init()
+    {
+        UpdatePlayerBaseHeathText(); //플레이어 기지 체력 Text
+        UpdateEnemyBaseHeathText();  //적 기지 체력 Text
+        UpdateLevelText(); //플레이어 레벨 Text
+        UpdateCostText(); //플레이어 레벨업 비용 Text
+        Victory(false);
+        Defeat(false);
+    }
 }

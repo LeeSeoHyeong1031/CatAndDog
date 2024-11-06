@@ -130,6 +130,7 @@ public class Unit : MonoBehaviour, ITakeDamage
         attackInterval = unitData.attackInterval + 0.5f;
         attackRange = unitData.attackRange;
         moveSpeed = unitData.moveSpeed;
+        dead = false;
         //cost = unitData.cost;
         c_name = unitData.c_name;
         //컴포넌트 할당

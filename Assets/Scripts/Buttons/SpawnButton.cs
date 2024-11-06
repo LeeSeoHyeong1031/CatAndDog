@@ -15,6 +15,14 @@ public class SpawnButton : MonoBehaviour
 
     public bool isSpawning; //현재 스폰 중인지.
 
+    private Button spawnButton;
+
+    private void Awake()
+    {
+        spawnButton = GetComponent<Button>();
+        spawnButton.onClick.AddListener(CanSpawn);
+    }
+
     private void Start()
     {
         characterCostText.text = player.unitData.cost.ToString();

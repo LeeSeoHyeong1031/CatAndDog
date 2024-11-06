@@ -18,7 +18,7 @@ public class Ultimate : MonoBehaviour
 
     private void Start()
     {
-        lastUltimateUse = ultimateInterval; //처음부터 궁극기를 사용할 순 없으니 궁극기 간격을 시작 값으로 줌.
+        lastUltimateUse = Time.time + ultimateInterval; //처음부터 궁극기를 사용할 순 없으니 궁극기 간격을 시작 값으로 줌.
     }
 
     private void Update()
