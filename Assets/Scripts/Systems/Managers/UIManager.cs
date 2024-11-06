@@ -92,9 +92,8 @@ public class UIManager : SingletonManager<UIManager>
     //레벨업 배경 업그레이드
     public IEnumerator UpdateLevelUpBgColor()
     {
-        while (true)
+        while (GameManager.Instance.level == GameManager.Instance.maxCoinByLevel.Length - 1)
         {
-            if (GameManager.Instance.level == GameManager.Instance.maxCoinByLevel.Length - 1) StopCoroutine(UpdateLevelUpBgColor());
 
             if (GameManager.Instance.curCoin >= GameManager.Instance.costByLevelUp[GameManager.Instance.level])
             {

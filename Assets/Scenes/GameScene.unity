@@ -8953,7 +8953,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damage: 100
-  ultimateInterval: 5
+  ultimateInterval: 60
   wait: 0.8
   pointA: {x: 0, y: -20}
   pointB: {x: 50, y: 20}
