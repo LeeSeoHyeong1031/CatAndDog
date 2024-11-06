@@ -51,6 +51,7 @@ public class GameManager : SingletonManager<GameManager>
         UIManager.Instance.costText.color = curCoin >= costByLevelUp[level] ? Color.black : Color.red;
     }
 
+
     //레벨업이 가능한지.
     public void CanLevelUp()
     {

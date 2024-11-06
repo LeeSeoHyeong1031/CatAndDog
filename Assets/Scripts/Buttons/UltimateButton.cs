@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class UltimateButton : MonoBehaviour
 {
+    private Button ultimateButton;
     private void Awake()
     {
-        UIManager.Instance.ultimateButton = GameObject.Find("UltimateBackground").GetComponent<Button>();
-        UIManager.Instance.ultimateButton.onClick.AddListener(UIManager.Instance.ultimateButton.GetComponent<UltimateButton>().OnClick);
+        ultimateButton = GetComponent<Button>();
+        ultimateButton.onClick.AddListener(OnClick);
     }
     public void OnClick()
     {

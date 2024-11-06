@@ -7942,9 +7942,6 @@ MonoBehaviour:
   victoryUI: {fileID: 7600410486418712564}
   defeatUI: {fileID: 1296113899}
   endPanel: {fileID: 136607298}
-  quitButton: {fileID: 4708220646484111370}
-  levelUpButton: {fileID: 2074718896}
-  ultimateButton: {fileID: 1065670426}
 --- !u!1 &1054308014
 GameObject:
   m_ObjectHideFlags: 0
@@ -8143,7 +8140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
+  m_Color: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8956,7 +8953,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damage: 100
-  ultimateInterval: 60
+  ultimateInterval: 5
   wait: 0.8
   pointA: {x: 0, y: -20}
   pointB: {x: 50, y: 20}
@@ -57473,7 +57470,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9601507, g: 1, b: 0, a: 0.57254905}
+      maxColor: {r: 1, g: 0, b: 0.9761739, a: 0.57254905}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -67809,7 +67806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8151177234109963644
 RectTransform:
   m_ObjectHideFlags: 0
@@ -68243,9 +68240,6 @@ MonoBehaviour:
   victoryUI: {fileID: 0}
   defeatUI: {fileID: 0}
   endPanel: {fileID: 0}
-  quitButton: {fileID: 0}
-  levelUpButton: {fileID: 0}
-  ultimateButton: {fileID: 0}
 --- !u!1 &8617105918027895515
 GameObject:
   m_ObjectHideFlags: 0

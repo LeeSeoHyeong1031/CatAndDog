@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class UIManager : SingletonManager<UIManager>
 {
@@ -29,9 +31,13 @@ public class UIManager : SingletonManager<UIManager>
     public GameObject defeatUI;
     public GameObject endPanel;
 
-    public Button quitButton;
-    public Button levelUpButton;
-    public Button ultimateButton;
+    private bool canUseUlti;
+
+    private void Start()
+    {
+        StartCoroutine(UpdateLevelUpBgColor());
+        StartCoroutine(UltimateBgColor());
+    }
 
     public void FindUIElements()
     {
@@ -48,9 +54,6 @@ public class UIManager : SingletonManager<UIManager>
         victoryUI = elements.victoryUI;
         defeatUI = elements.defeatUI;
         endPanel = elements.endPanel;
-        quitButton = elements.quitButton;
-        levelUpButton = elements.levelUpButton;
-        ultimateButton = elements.ultimateButton;
     }
 
 
@@ -86,6 +89,31 @@ public class UIManager : SingletonManager<UIManager>
         costText.text = GameManager.Instance.costByLevelUp[GameManager.Instance.level].ToString();
     }
 
+    //레벨업 배경 업그레이드
+    public IEnumerator UpdateLevelUpBgColor()
+    {
+        while (true)
+        {
+            if (GameManager.Instance.level == GameManager.Instance.maxCoinByLevel.Length - 1) StopCoroutine(UpdateLevelUpBgColor());
+
+            if (GameManager.Instance.curCoin >= GameManager.Instance.costByLevelUp[GameManager.Instance.level])
+            {
+                levelUpBackgroundImage.color = Color.yellow;
+                yield return new WaitForSeconds(0.5f);
+                Color color = levelUpBackgroundImage.color;
+                color.a = 0.7f;
+                levelUpBackgroundImage.color = color;
+                if (GameManager.Instance.curCoin < GameManager.Instance.costByLevelUp[GameManager.Instance.level]) levelUpBackgroundImage.color = Color.gray;
+                yield return new WaitForSeconds(0.5f);
+            }
+            else
+            {
+                levelUpBackgroundImage.color = Color.gray;
+            }
+            yield return null;
+        }
+    }
+
     //최대 레벨일 때 처리하기 위한 메서드
     public void MaxLevel()
     {
@@ -99,14 +127,32 @@ public class UIManager : SingletonManager<UIManager>
     {
         if (Time.time >= lastUltimateUse)
         {
-            UltimateBackground.color = Color.white;
+            canUseUlti = true;
             ultimateParticleObj.gameObject.SetActive(true);
+        }
+    }
+
+    public IEnumerator UltimateBgColor()
+    {
+        while (true)
+        {
+            if (!canUseUlti) UltimateDeActive();
+            else
+            {
+                UltimateBackground.color = new Color32(250, 100, 255, 255);
+                yield return new WaitForSeconds(0.5f);
+                UltimateBackground.color = new Color32(250, 100, 255, 170);
+                if (!canUseUlti) UltimateDeActive();
+                yield return new WaitForSeconds(0.5f);
+            }
+            yield return null;
         }
     }
 
     //궁극기 비활성화
     public void UltimateDeActive()
     {
+        canUseUlti = false;
         UltimateBackground.color = Color.gray;
         ultimateParticleObj.gameObject.SetActive(false);
     }

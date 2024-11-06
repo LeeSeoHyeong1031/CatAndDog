@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class GoTitleButton : MonoBehaviour
 {
+    private Button goTitleButton;
     private void Awake()
     {
-        UIManager.Instance.quitButton = GameObject.Find("QuitButton").GetComponent<Button>();
-        UIManager.Instance.quitButton.onClick.AddListener(UIManager.Instance.quitButton.GetComponent<GoTitleButton>().OnClick);
+        goTitleButton = GetComponent<Button>();
+        goTitleButton.onClick.AddListener(OnClick);
     }
     public void OnClick()
     {
