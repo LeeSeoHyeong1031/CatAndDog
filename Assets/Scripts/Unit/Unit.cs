@@ -21,7 +21,6 @@ public class Unit : MonoBehaviour, ITakeDamage
     internal float attackInterval; //공격속도
     internal float lastAttackTime = 0; //마지막 공격 시간
     internal bool isTarget = false; //적이 감지되면 멈추기
-    internal bool isSingleTarget; //단일 공격인지
     public LayerMask targetLayer; //타겟 레이어
 
     // spawn

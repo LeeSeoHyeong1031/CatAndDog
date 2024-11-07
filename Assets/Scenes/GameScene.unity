@@ -9696,7 +9696,6 @@ MonoBehaviour:
   playerBase: {fileID: 0}
   enemyBase: {fileID: 0}
   playerBaseSpawner: {fileID: 0}
-  coinManager: {fileID: 0}
 --- !u!4 &1670269553
 Transform:
   m_ObjectHideFlags: 0

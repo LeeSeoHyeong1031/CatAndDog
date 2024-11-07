@@ -15,7 +15,7 @@ public class CoinManager : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.Instance.coinManager = this;
+        GameManager.Instance.setCoinManager(this);
     }
 
     private void Start()

@@ -72,22 +72,25 @@ public class UIManager : SingletonManager<UIManager>
     //레벨 Text 업뎃
     public void UpdateLevelText()
     {
-        levelText.text = $"LV {GameManager.Instance.coinManager.level + 1}";
+        CoinManager cm = GameManager.Instance.getCoinManager();
+        levelText.text = $"LV {cm.level + 1}";
     }
 
     //레벨업 비용 Text 업뎃
     public void UpdateCostText()
     {
-        costText.text = GameManager.Instance.coinManager.costByLevelUp[GameManager.Instance.coinManager.level].ToString();
+        CoinManager cm = GameManager.Instance.getCoinManager();
+        costText.text = cm.costByLevelUp[cm.level].ToString();
     }
 
     //레벨업 배경 업그레이드
     public IEnumerator UpdateLevelUpBgColor()
     {
-        while (GameManager.Instance.coinManager.level < GameManager.Instance.coinManager.maxCoinByLevel.Length - 1)
+        CoinManager cm = GameManager.Instance.getCoinManager();
+        while (cm.level < cm.maxCoinByLevel.Length - 1)
         {
 
-            if (GameManager.Instance.coinManager.curCoin >= GameManager.Instance.coinManager.costByLevelUp[GameManager.Instance.coinManager.level])
+            if (cm.curCoin >= cm.costByLevelUp[cm.level])
             {
                 levelUpBackgroundImage.color = Color.yellow;
                 yield return new WaitForSeconds(0.5f);

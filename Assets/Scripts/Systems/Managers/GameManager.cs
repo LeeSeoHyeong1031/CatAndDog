@@ -14,7 +14,10 @@ public class GameManager : SingletonManager<GameManager>
 
     public PlayerBaseSpawner playerBaseSpawner;
 
-    public CoinManager coinManager;
+    private CoinManager coinManager;
+
+    public CoinManager getCoinManager() { return coinManager; }
+    public void setCoinManager(CoinManager coinManager) { this.coinManager = coinManager; }
 
     private void Update()
     {
@@ -92,6 +95,7 @@ public class GameManager : SingletonManager<GameManager>
     {
         curPlayerUnits.Clear();
         curEnemyUnits.Clear();
+        Resume();
     }
 
     //GameManager에 있는 curPlayerUnits에 Add할 떄 리스트안에서 y좌표 별로 정렬해서 넣어놔야 함.
