@@ -31,11 +31,11 @@ public class SpawnButton : MonoBehaviour
     public void CanSpawn()
     {
         //현재 가진 코인이 스폰할 유닛의 비용보다 높다면 스폰.
-        if (GameManager.Instance.curCoin >= player.unitData.cost && isSpawning == false)
+        if (GameManager.Instance.coinManager.curCoin >= player.unitData.cost && isSpawning == false)
         {
             isSpawning = true;
             SpawningImage();
-            GameManager.Instance.curCoin -= player.unitData.cost;
+            GameManager.Instance.coinManager.curCoin -= player.unitData.cost;
             GameManager.Instance.playerBaseSpawner.Spawn(player);
         }
     }
@@ -69,7 +69,7 @@ public class SpawnButton : MonoBehaviour
     public void CharacterCostAndImageColor()
     {
         //소지한 코인이 유닛의 비용보다 클 때
-        if (GameManager.Instance.curCoin >= player.unitData.cost && isSpawning == false)
+        if (GameManager.Instance.coinManager.curCoin >= player.unitData.cost && isSpawning == false)
         {
             characterCostText.color = Color.black;
             characterImage.color = Color.white;

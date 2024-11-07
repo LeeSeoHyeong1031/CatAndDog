@@ -31,14 +31,6 @@ public class UIManager : SingletonManager<UIManager>
     public GameObject defeatUI;
     public GameObject endPanel;
 
-    private bool canUseUlti;
-
-    private void Start()
-    {
-        StartCoroutine(UpdateLevelUpBgColor());
-        StartCoroutine(UltimateBgColor());
-    }
-
     public void FindUIElements()
     {
         // UI 요소들 찾기
@@ -80,29 +72,28 @@ public class UIManager : SingletonManager<UIManager>
     //레벨 Text 업뎃
     public void UpdateLevelText()
     {
-        levelText.text = $"LV {GameManager.Instance.level + 1}";
+        levelText.text = $"LV {GameManager.Instance.coinManager.level + 1}";
     }
 
     //레벨업 비용 Text 업뎃
     public void UpdateCostText()
     {
-        costText.text = GameManager.Instance.costByLevelUp[GameManager.Instance.level].ToString();
+        costText.text = GameManager.Instance.coinManager.costByLevelUp[GameManager.Instance.coinManager.level].ToString();
     }
 
     //레벨업 배경 업그레이드
     public IEnumerator UpdateLevelUpBgColor()
     {
-        while (GameManager.Instance.level == GameManager.Instance.maxCoinByLevel.Length - 1)
+        while (GameManager.Instance.coinManager.level < GameManager.Instance.coinManager.maxCoinByLevel.Length - 1)
         {
 
-            if (GameManager.Instance.curCoin >= GameManager.Instance.costByLevelUp[GameManager.Instance.level])
+            if (GameManager.Instance.coinManager.curCoin >= GameManager.Instance.coinManager.costByLevelUp[GameManager.Instance.coinManager.level])
             {
                 levelUpBackgroundImage.color = Color.yellow;
                 yield return new WaitForSeconds(0.5f);
                 Color color = levelUpBackgroundImage.color;
                 color.a = 0.7f;
                 levelUpBackgroundImage.color = color;
-                if (GameManager.Instance.curCoin < GameManager.Instance.costByLevelUp[GameManager.Instance.level]) levelUpBackgroundImage.color = Color.gray;
                 yield return new WaitForSeconds(0.5f);
             }
             else
@@ -122,27 +113,27 @@ public class UIManager : SingletonManager<UIManager>
     }
 
     //궁극기 활성화
-    public void UltimateActive(ref float lastUltimateUse)
+    public void UltimateActive()
     {
-        if (Time.time >= lastUltimateUse)
-        {
-            canUseUlti = true;
-            ultimateParticleObj.gameObject.SetActive(true);
-        }
+        ultimateParticleObj.gameObject.SetActive(true);
     }
 
+    //궁극기 배경 색상 조정 메서드
     public IEnumerator UltimateBgColor()
     {
         while (true)
         {
-            if (!canUseUlti) UltimateDeActive();
-            else
+            if (Ultimate.canUseUlti == true)
             {
+                if (ultimateParticleObj.gameObject.activeInHierarchy == false) UltimateActive();
                 UltimateBackground.color = new Color32(250, 100, 255, 255);
                 yield return new WaitForSeconds(0.5f);
                 UltimateBackground.color = new Color32(250, 100, 255, 170);
-                if (!canUseUlti) UltimateDeActive();
                 yield return new WaitForSeconds(0.5f);
+            }
+            else
+            {
+                UltimateDeActive();
             }
             yield return null;
         }
@@ -151,8 +142,6 @@ public class UIManager : SingletonManager<UIManager>
     //궁극기 비활성화
     public void UltimateDeActive()
     {
-        if (ultimateParticleObj == null) return;
-        canUseUlti = false;
         UltimateBackground.color = Color.gray;
         ultimateParticleObj.gameObject.SetActive(false);
     }

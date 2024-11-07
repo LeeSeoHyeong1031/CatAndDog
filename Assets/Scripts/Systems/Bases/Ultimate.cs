@@ -10,6 +10,7 @@ public class Ultimate : MonoBehaviour
     public int damage = 100; //±Ã±Ø±â µ¥¹ÌÁö.
     public float ultimateInterval = 60f; //±Ã±Ø±â °£°Ý.
     private float lastUltimateUse; //¸¶Áö¸· ±Ã±Ø±â »ç¿ë ½Ã°£.
+    public static bool canUseUlti = false;
 
     public float wait;
 
@@ -18,22 +19,23 @@ public class Ultimate : MonoBehaviour
 
     private void Start()
     {
+        canUseUlti = false;
         lastUltimateUse = Time.time + ultimateInterval; //Ã³À½ºÎÅÍ ±Ã±Ø±â¸¦ »ç¿ëÇÒ ¼ø ¾øÀ¸´Ï ±Ã±Ø±â °£°ÝÀ» ½ÃÀÛ °ªÀ¸·Î ÁÜ.
+        StartCoroutine(UIManager.Instance.UltimateBgColor());
     }
 
     private void Update()
     {
-        UIManager.Instance.UltimateActive(ref lastUltimateUse);
+        canUseUlti = Time.time >= lastUltimateUse ? true : false;
     }
 
     //±Ã±Ø±â »ç¿ë °¡´ÉÇÑÁö
     public void CanUltimateUse()
     {
         //60ÃÊ ¸¶´Ù ±Ã±Ø±â »ç¿ë.
-        if (Time.time >= lastUltimateUse)
+        if (canUseUlti == true)
         {
             lastUltimateUse = Time.time + ultimateInterval;
-            UIManager.Instance.UltimateDeActive(); //ÆÄÆ¼Å¬ ²ô°í ±Ã±Ø±â »ö»ó ¿ø·¡´ë·Î µ¹·Á ³õ±â.
             ParticleSystem pt1 = Instantiate(pt, pt.transform.position, pt.transform.rotation);
             pt1.Play();
             Destroy(pt1, 2f);

@@ -367,6 +367,54 @@ MonoBehaviour:
   spawnCooltimeBar: {fileID: 1532966728}
   characterCostText: {fileID: 379187811}
   isSpawning: 0
+--- !u!1 &107342590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 107342591}
+  - component: {fileID: 107342592}
+  m_Layer: 0
+  m_Name: CoinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &107342591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107342590}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1693.7944, y: 249.98909, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &107342592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107342590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c448e6b71b27218429b81b4b0a913169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curCoin: 0
+  maxCoinByLevel: 6400000096000000c8000000fa0000002c0100005e01000090010000
+  costByLevelUp: 280000005000000078000000a0000000c8000000f0000000
+  level: 0
 --- !u!1 &136607298
 GameObject:
   m_ObjectHideFlags: 0
@@ -9648,10 +9696,7 @@ MonoBehaviour:
   playerBase: {fileID: 0}
   enemyBase: {fileID: 0}
   playerBaseSpawner: {fileID: 0}
-  curCoin: 0
-  maxCoinByLevel: 6400000096000000c8000000fa0000002c0100005e01000090010000
-  costByLevelUp: 280000005000000078000000a0000000c8000000f0000000
-  level: 0
+  coinManager: {fileID: 0}
 --- !u!4 &1670269553
 Transform:
   m_ObjectHideFlags: 0
@@ -67806,7 +67851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8151177234109963644
 RectTransform:
   m_ObjectHideFlags: 0
@@ -68966,3 +69011,4 @@ SceneRoots:
   - {fileID: 1670269553}
   - {fileID: 169407199346849856}
   - {fileID: 1052069603}
+  - {fileID: 107342591}
